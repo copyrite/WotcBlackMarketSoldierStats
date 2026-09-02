@@ -6,6 +6,15 @@ var config int VERSION_CFG;
 // Highlight above/below average stats
 var config bool HIGHLIGHT_ABOVE_BELOW_AVERAGE;
 
+// Stat display mode. The order must match STAT_DISPLAY_MODE_Strings in the localization file.
+enum EStatDisplayMode
+{
+    eSDM_Absolute, // 0
+    eSDM_Delta,    // 1
+    eSDM_Combined  // 2
+};
+var config int STAT_DISPLAY_MODE;
+
 // Panel location
 var config int PANEL_X;
 var config int PANEL_Y;

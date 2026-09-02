@@ -251,10 +251,11 @@ simulated function OnButtonSizeRealized()
 
 function UISummary_ItemStat GetStat(XComGameState_Unit Unit, ECharStatType StatType)
 {
-    local int UnitStat, BaseStat, ProgressedStat, Rank, i, j;
+    local int UnitStat, BaseStat, ProgressedStat, DeltaStat, DisplayMode, Rank, i, j;
     local EUIState Colour;
     local UISummary_ItemStat Stat;
     local array<SoldierClassStatType> StatProgression;
+    local string DeltaStr;
     
     UnitStat = Unit.GetCurrentStat(StatType);
     BaseStat = CharacterTemplate.CharacterBaseStats[StatType];
@@ -274,11 +275,19 @@ function UISummary_ItemStat GetStat(XComGameState_Unit Unit, ECharStatType StatT
         }
     }
 
-    if (UnitStat < ProgressedStat && `GETMCMVAR(HIGHLIGHT_ABOVE_BELOW_AVERAGE))
+    DeltaStat = UnitStat - ProgressedStat;
+    DeltaStr = string(DeltaStat);
+    // Prepend a plus sign to non-negative DeltaStats
+    if (DeltaStat >= 0)
+    {
+        DeltaStr = "+" $ string(DeltaStat);
+    }
+
+    if (DeltaStat < 0 && `GETMCMVAR(HIGHLIGHT_ABOVE_BELOW_AVERAGE))
     {
         Colour = eUIState_Bad;
     }
-    else if (UnitStat > ProgressedStat && `GETMCMVAR(HIGHLIGHT_ABOVE_BELOW_AVERAGE))
+    else if (DeltaStat > 0 && `GETMCMVAR(HIGHLIGHT_ABOVE_BELOW_AVERAGE))
     {
         Colour = eUIState_Good;
     }
@@ -287,8 +296,20 @@ function UISummary_ItemStat GetStat(XComGameState_Unit Unit, ECharStatType StatT
         Colour = eUIState_Normal;
     }
 
+    DisplayMode = `GETMCMVAR(STAT_DISPLAY_MODE);
+    switch (DisplayMode)
+    {
+        case eSDM_Delta:
+            Stat.Value = DeltaStr;
+            break;
+        case eSDM_Combined:
+            Stat.Value = string(UnitStat) @ "(" $ DeltaStr $ ")";
+            break;
+        default: // eSDM_Absolute, also the fallback for out-of-range config values
+            Stat.Value = string(UnitStat);
+    }
+
     Stat.Label = class'X2TacticalGameRulesetDataStructures'.default.m_aCharStatLabels[StatType];
-    Stat.Value = string(int(SelectedUnit.GetCurrentStat(StatType)));
     Stat.ValueState = Colour;
     Stat.ValueStyle = eUITextStyle_Tooltip_AbilityRight; // Prevent that zeros are converted to dashes (--)
     

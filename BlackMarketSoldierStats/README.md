@@ -15,6 +15,12 @@ The average value of a stat is determined by taking the average value at
 Rookie level and adding all progressions up to the rank of the Black Market
 soldier.
 
+*Stat display mode*
+
+Stats can be shown as their absolute value, as the difference to the average
+value for the soldier's class and rank (e.g. "+3" or "-2"), or as a combination
+of both (e.g. "68 (+3)").
+
 *Assign a cost to revealing the stats*
 
 If you prefer to attach a cost to revealing the stats of a Black Market
