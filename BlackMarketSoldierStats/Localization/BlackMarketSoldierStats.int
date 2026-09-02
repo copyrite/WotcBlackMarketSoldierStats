@@ -8,6 +8,12 @@ UISettings_Label = UI Settings
 HIGHLIGHT_ABOVE_BELOW_AVERAGE_Label="Highlight above/below average stats"
 HIGHLIGHT_ABOVE_BELOW_AVERAGE_Tip="If activated, highlights below average stats in red and above average stats in green."
 
+STAT_DISPLAY_MODE_Label="Stat display mode"
+STAT_DISPLAY_MODE_Tip="Show stat as absolute, delta (relative difference adjusted to rank), or as combination of both."
+STAT_DISPLAY_MODE_Strings[0]="Absolute"
+STAT_DISPLAY_MODE_Strings[1]="Delta"
+STAT_DISPLAY_MODE_Strings[2]="Combined"
+
 PSI_OFFENSE_REQUIRE_SECTOID_AUTOPSY_Label="Require Sectoid autopsy for Psi Offense stat"
 PSI_OFFENSE_REQUIRE_SECTOID_AUTOPSY_Tip="Require the Sectoid autopsy to be completed before displaying the Psi Offense stat. Intended mainly for Long War of the Chosen players to get a behaviour consistent with how the display of the stat is handled there."
 
