@@ -51,6 +51,9 @@ bumps the minor version, `fix` and `perf` bump the patch version and a `BREAKING
 bumps the major version. The `VERSION_*` constants in `BlackMarketSoldierStats_Settings.uc` only
 carry a placeholder development version in between releases.
 
+The workflow pushes to `master` with the deploy key stored in the `RELEASE_DEPLOY_KEY` secret. The
+key needs write access and must be listed as bypass actor of the rulesets protecting `master`.
+
 As the mod cannot be built in GitHub Actions, the release is created as a draft and the built
 assets have to be attached by hand:
 
