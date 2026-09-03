@@ -3,7 +3,7 @@ class BlackMarketSoldierStats_Settings extends Object config(BlackMarketSoldierS
 // Mod version
 const VERSION_MAJOR = 1;
 const VERSION_MINOR = 4;
-const VERSION_PATCH = 0;
+const VERSION_PATCH = 1;
 
 // Config version
 var config int VERSION_CFG;
